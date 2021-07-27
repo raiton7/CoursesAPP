@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoursesAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoursesAPI
 {
@@ -31,6 +33,9 @@ namespace CoursesAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CoursesAPI", Version = "v1" });
             });
+
+            services.AddDbContext<CoursesContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("CoursesAPI")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
