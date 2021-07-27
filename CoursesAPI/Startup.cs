@@ -35,7 +35,7 @@ namespace CoursesAPI
             });
 
             services.AddDbContext<CoursesContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("CoursesAPI")));
+                options.UseSqlServer(Configuration.GetConnectionString("CoursesConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
