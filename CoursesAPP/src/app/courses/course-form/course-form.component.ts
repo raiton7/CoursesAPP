@@ -20,6 +20,7 @@ export class CourseFormComponent implements OnInit {
   topicsList: Topic[] = [] as Topic[];
   tmpTopicsList: Topic[] = [] as Topic[];
   topicForm: Topic = new Topic();
+  header = "Dodaj kurs";
 
   constructor(private coursesService: CoursesService, private topicsService: TopicsService, 
     private router: Router, private route: ActivatedRoute, public dialog: MatDialog) { }
@@ -35,6 +36,7 @@ export class CourseFormComponent implements OnInit {
   }
 
   async getCourse(id: number) {
+    this.header = "Szczegóły kursu";
     this.courseForm = await this.coursesService.getCourse(id);
   }
 
