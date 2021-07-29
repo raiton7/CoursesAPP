@@ -1,0 +1,21 @@
+<div mat-dialog-content novalidate>
+    <input type="hidden" name="id" id="id" [(ngModel)]="topicForm.id"/>
+    <div class=form-group>
+        <label>Nazwa</label>
+        <input class="form-control" placeholder="Nazwa" id="name"
+        name="name" ngModel required #name="ngModel" [(ngModel)]="topicForm.name">
+    </div>
+    <div class=form-group>
+        <label>Numer</label>
+        <input class="form-control" placeholder="numer" id="number"
+        name="number" ngModel #number="ngModel" [(ngModel)]="topicForm.number">
+    </div>
+    <input type="hidden" name="courseId" id="courseId" [value]="topicForm.courseId"/>
+    <div class="form-group">
+        <button class="btn btn-primary btn-sm" name="save" type="submit" 
+        (click)="onSubmit()" cdkFocusInitial>
+            Zapisz
+        </button>
+        <button class="btn btn-secondary btn-sm" (click)="onNoClick()" cdkFocusInitial>Wróć</button>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 <h3>Dodaj/edytuj kurs</h3>
 
-<form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+<form #form="ngForm" novalidate>
     <input type="hidden" name="id" id="id" [value]="courseForm.id"/>
     <div class=form-group>
         <label>Nazwa</label>
@@ -12,11 +12,49 @@
         <textarea class="form-control" placeholder="Opis" id="details"
         name="details" ngModel #details="ngModel" [(ngModel)]="courseForm.details" rows="2"></textarea>
     </div>
-    <div class="form-group">
-        <button class="btn btn-primary btn-sm" name="save" type="submit">Zapisz</button>
-        <button class="btn btn-info btn-sm" name="save_exit" type="submit">Zapisz i wyjdź</button>
-    </div>
 </form>
+<hr />
+<h4>Lista tematów</h4>
+<div>
+    <button class="btn btn-warning btn-sm" name="topic" (click)="btnTopicDialog(0)">Dodaj temat kursu</button>
+</div>
+<div *ngIf="topicsList.length > 0; else emptyList">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Nazwa</th>
+                <th>Numer</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of topicsList">
+                <td>{{t.id}}</td>
+                <td>{{t.name}}</td>
+                <td>{{t.number}}</td>
+                <td>
+                    <a (click)="btnTopicDialog(t.id)">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a (click)="onTopicDelete(t.id, t.name, t.number)">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #emptyList>
+    <div>
+        <p>Brak tematów przypisanych do kursu</p>
+    </div>
+</ng-template>
+<hr />
+<div class="form-group">
+    <button class="btn btn-primary btn-sm" name="save" type="submit" (click)="onSubmit(form)">Zapisz</button>
+    <button class="btn btn-info btn-sm" name="save_exit" type="submit" (click)="onSubmit(form)">Zapisz i wyjdź</button>
+</div>
 <div>
     <button class="btn btn-secondary btn-sm" routerLink="/courses">Wróć</button>
 </div>

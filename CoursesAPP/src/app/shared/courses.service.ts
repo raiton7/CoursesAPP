@@ -16,7 +16,7 @@ export class CoursesService {
    * Returns list of Course model
    * @returns Course[]
    */
-   async getList() {
+  async getList() {
     let coursesList: Course[] = [];
     await this.http.get(this.baseURL)
       .toPromise()

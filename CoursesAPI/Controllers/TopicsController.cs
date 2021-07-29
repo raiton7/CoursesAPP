@@ -24,7 +24,19 @@ namespace CoursesAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Topic>>> GetList()
         {
-            return await _context.Topics.ToListAsync();
+            return await _context.Topics
+                .OrderBy(x => x.Number)
+                .ToListAsync();
+        }
+
+        // GET: api/Topics/list/5
+        [HttpGet("list/{courseId}")]
+        public async Task<ActionResult<IEnumerable<Topic>>> GetListByCourseId(long courseId)
+        {
+            return await _context.Topics
+                .Where(x => x.CourseId == courseId)
+                .OrderBy(x => x.Number)
+                .ToListAsync();
         }
 
         // GET: api/Topics/5

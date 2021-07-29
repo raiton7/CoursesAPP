@@ -10,12 +10,14 @@ import { CoursesComponent } from './courses/courses.component';
 import { CourseFormComponent } from './courses/course-form/course-form.component';
 import { CoursesService } from './shared/courses.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TopicFormComponent } from './courses/course-form/topic-form/topic-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    TopicFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Topic } from './topic.model';
 import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +18,23 @@ export class TopicsService {
    * Returns list of Topic model
    * @returns Topic[]
    */
-   async getList() {
+  async getList() {
     let topicsList: Topic[] = [];
     await this.http.get(this.baseURL)
+      .toPromise()
+      .then(res => topicsList = res as Topic[]);
+    
+    return topicsList;
+  }
+
+  /**
+   * Returns list of Topic model related with Course given by courseId
+   * @param courseId number
+   * @returns Topic[]
+   */
+  async getListByCourseId(courseId: number) {
+    let topicsList: Topic[] = [];
+    await this.http.get(`${this.baseURL}/list/${courseId}`)
       .toPromise()
       .then(res => topicsList = res as Topic[]);
     
@@ -55,9 +71,8 @@ export class TopicsService {
    * @param topic Topic
    * @returns Observable
    */
-  async editTopic(id: number, topic: Topic) {
-    return await this.http.put(`${this.baseURL}/${id}`, topic)
-    .toPromise();
+  editTopic(id: number, topic: Topic) {
+    return this.http.put(`${this.baseURL}/${id}`, topic);
   }
 
   /**
