@@ -24,7 +24,10 @@ namespace CoursesAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Course>>> GetList()
         {
-            return await _context.Courses.ToListAsync();
+            var ret = await _context.Courses
+                .OrderBy(x => x.Name)
+                .ToListAsync();
+            return ret;
         }
 
         // GET: api/Courses/5
