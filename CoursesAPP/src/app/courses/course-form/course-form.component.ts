@@ -51,7 +51,7 @@ export class CourseFormComponent implements OnInit {
 
     switch (btnName) {
       case 'save': {
-        this.getCourse(this.courseForm.id);
+        this.router.navigateByUrl(`/courses/course-form/${this.courseForm.id}`);
         break;
       }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Course } from './course.model';
-import { HttpClient } from "@angular/common/http"
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,6 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   readonly baseURL = "http://localhost:35087/api/Courses"
-  // course: Course = new Course();
   
 
   /**
